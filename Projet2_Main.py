@@ -21,7 +21,6 @@ Ordi_Biped.on_message = p2_s.on_message   #? Optionnel
 time.sleep(0.3)
 
 # Initialize les moteurs a 90 degre
-print("Initializing Stand Up  -  -  -  .")
 p2_s.start_debout(Ordi_Biped)
 
 # Module de Communication
@@ -34,10 +33,13 @@ while (p2_s.sequence_is > 0):
    print("Sequence chosen :" , p2_s.sequence[p2_s.sequence_is])
    if p2_s.sequence_is == 0 :   #! Sequence 0 = Arret du Programme
       break
-   
-   # Selection de repetition
-   num_times = int(input("\n - Number of sequence : "))
-   p2_s.publish_for(num_times , Ordi_Biped)
+   elif p2_s.sequence_is == 1 or p2_s.sequence_is == 2:
+      motor_is = input("  -  Choix d'un Moteur :")
+      p2_s.test_uniMotor(motor_is, Ordi_Biped)
+   else :
+      # Selection de repetition
+      num_times = int(input("\n - Number of sequence : "))
+      p2_s.publish_for(num_times , Ordi_Biped)
    
    print("  -  -  -  Loading  -  -  -")
    time.sleep(0.3)
